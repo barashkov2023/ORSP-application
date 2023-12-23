@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+	<title>baraskov_weather</title>
+</head>
+<body>
+	<div class="screen">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.name }}
+			<div class="control">
+				<button class="search-button" type="submit" class="is-info">
+					Узнать погоду
+				</button>
+			</div>
+			{% if message %}
+				<div class="{{ message_class }}">{{ message }}</div>
+			{% endif %}
+		</form>	
+		
+		{% for weather in weather_data %}
+			<div class="weather-item">
+				<figure >
+					<img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+				</figure>
+					<p>
+						<span class="title">{{ weather.city_name }}</span>
+						<br>
+						<span class="subtitle">{{ weather.temperature }}° F</span>
+						<br> {{ weather.description }}
+					</p>
+				<a href="{% url 'delete_city' weather.city_name %}">
+					<button>удалить</button>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</body>
+</html>
+
+

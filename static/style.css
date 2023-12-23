@@ -1,0 +1,20 @@
+.is-success {
+    background: green;
+    margin-top: 15px;
+}
+.is-danger {
+    background: red;
+    margin-top: 15px;
+}
+
+.screen {
+    width: 50%;
+}
+.search-button {
+    margin-top: 15px;
+}
+.weather-item {
+    margin-top: 15px;
+    border: 1px solid black;
+    padding: 15px;
+}
